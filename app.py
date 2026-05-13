@@ -78,7 +78,7 @@ st.write('### queremosunagalletadelnata')
 st.header('Nuestro Equipo', anchor='nuestro-equipo')
 mostrar_img('equipo.jpg', 'Plantel Oficial Apendicity FC')
 
-# --- CATEGORÍAS ---
+# --- CATEGORÍAS ACTUALIZADAS ---
 categorias = {
     "🧤 ARQUERAS / DEFENSAS": [
         {"n": "Frías", "num": "19", "p": "Arquero/Defensa"}
@@ -88,15 +88,15 @@ categorias = {
         {"n": "Rosenfeld", "num": "18", "p": "Defensa"},
         {"n": "Cerpa", "num": "4", "p": "Defensa"},
         {"n": "Inés", "num": "24", "p": "Defensa/Medio"},
-        {"n": "Samacoitz", "num": "6", "p": "Defensa/Medio Def."},
-        {"n": "Cami", "num": "??", "p": "Medio Defensivo"}
+        {"n": "Samacoitz", "num": "6", "p": "Defensa/Medio Def."}
     ],
-    "🎯 MEDIOCAMPO Y CREACIÓN": [
+    "🎯 MEDIOCAMPO": [
         {"n": "Acevedo", "num": "22", "p": "Medio Ofensivo"},
         {"n": "Paredes", "num": "10", "p": "Medio Ofensivo"},
         {"n": "Anto Lagos", "num": "12", "p": "Defensa/Medio Of."},
         {"n": "Coya", "num": "??", "p": "Medio Ofensivo"},
-        {"n": "Maguire", "num": "3", "p": "Defensa/Medio Of."}
+        {"n": "Maguire", "num": "3", "p": "Defensa/Medio Of."},
+        {"n": "Cami", "num": "??", "p": "Medio Defensivo"} # Movida aquí
     ],
     "⚡ ATAQUE Y UNIVERSALES": [
         {"n": "Nina", "num": "11", "p": "Delantera"},
