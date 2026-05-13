@@ -82,12 +82,13 @@ mostrar_img('equipo.jpg', 'Plantel Oficial Apendicity FC')
 categorias = {
     "🧤 ARQUERAS": [
         {"n": "Frías", "num": "19", "p": "Arquero/Defensa"},
-        {"n": "Urra", "num": "88", "p": "Universal"} # Movida aquí
+        {"n": "Urra", "num": "88", "p": "Universal"}
     ],
     "🛡️ LÍNEA DEFENSIVA": [
         {"n": "Poblete", "num": "8", "p": "Defensa Central"},
         {"n": "Rosenfeld", "num": "18", "p": "Defensa"},
         {"n": "Cerpa", "num": "4", "p": "Defensa"},
+        {"n": "Riquelme", "num": "21", "p": "Defensa"}, # Nueva jugadora
         {"n": "Inés", "num": "24", "p": "Defensa/Medio"},
         {"n": "Samacoitz", "num": "6", "p": "Defensa/Medio Def."}
     ],
@@ -160,7 +161,7 @@ with col_news2:
     st.write("##")
     if st.button('Suscribirme'):
         if email_usuario: st.toast(f'¡Registrado {email_usuario}!')
-        else: st.warning('Ingresa un correo.')
+        else: st.warning('Por favor, ingresa un correo.')
 
 st.divider()
 
