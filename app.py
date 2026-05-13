@@ -14,26 +14,43 @@ with st.sidebar:
     st.write("Próximo partido: **14 de Mayo**")
 
 # --- SECCIÓN: NUESTRO EQUIPO ---
-st.title('⚽ Apendicity FC')
-st.write('### queremosunagalletadelnata')
-
 st.header('Nuestro Equipo', anchor='nuestro-equipo')
-# Función para mostrar imágenes con seguridad
-def mostrar_img(archivo, texto):
-    if os.path.exists(archivo):
-        st.image(archivo, caption=texto)
-    else:
-        st.info(f"Subiendo foto: {archivo}")
+st.write('### Plantel Oficial Apendicity FC')
 
-mostrar_img('equipo.jpg', 'Plantel Oficial Apendicity FC')
+# Lista de jugadoras
+jugadoras = [
+    {"n": "Nina", "num": "11", "p": "Delantera"},
+    {"n": "Guti", "num": "7", "p": "Universal"},
+    {"n": "Maguire", "num": "3", "p": "Defensa/Medio Of."},
+    {"n": "Elisol", "num": "5", "p": "Universal"},
+    {"n": "Acevedo", "num": "22", "p": "Medio Ofensivo"},
+    {"n": "Paredes", "num": "10", "p": "Medio Ofensivo"},
+    {"n": "Samacoitz", "num": "6", "p": "Defensa/Medio Def."},
+    {"n": "Frías", "num": "19", "p": "Arquero/Defensa"},
+    {"n": "Rafa", "num": "2", "p": "Universal"},
+    {"n": "Rosenfeld", "num": "18", "p": "Defensa"},
+    {"n": "Anto Lagos", "num": "12", "p": "Defensa/Medio Of."},
+    {"n": "Pía", "num": "9", "p": "Universal"},
+    {"n": "Urra", "num": "88", "p": "Universal"},
+    {"n": "Poblete", "num": "8", "p": "Defensa Central"},
+    {"n": "Inés", "num": "24", "p": "Defensa/Medio"},
+    {"n": "Agus", "num": "16", "p": "Delantera/Medio"},
+    {"n": "Coya", "num": "??", "p": "Medio Ofensivo"},
+    {"n": "Cami", "num": "??", "p": "Medio Defensivo"},
+    {"n": "Cerpa", "num": "4", "p": "Defensa"}
+]
 
-st.subheader('Calendario y Resultados')
-res = {
-    'Fecha': ['14/05', '07/05', '09/04', '27/03'],
-    'Rival': ['Real Parir FC', 'Dopaminitas', 'Melatominas', 'Staphylogol'],
-    'Marcador': ['POR JUGAR', '0 - 1', '0 - 4', '1 - 2']
-}
-st.table(res)
+# Diseño de "Cartas" en cuadrícula (4 por fila)
+cols = st.columns(4)
+for i, j in enumerate(jugadoras):
+    with cols[i % 4]:
+        st.markdown(f"""
+        <div style="border: 2px solid #FFD700; border-radius: 10px; padding: 15px; text-align: center; background-color: #1e1e1e; margin-bottom: 20px; min-height: 150px;">
+            <h1 style="color: #FFD700; margin: 0; font-size: 40px;">{j['num']}</h1>
+            <h3 style="color: white; margin: 5px 0;">{j['n']}</h3>
+            <p style="color: #cccccc; font-size: 14px; font-style: italic;">{j['p']}</p>
+        </div>
+        """, unsafe_allow_html=True)
 
 st.divider()
 
