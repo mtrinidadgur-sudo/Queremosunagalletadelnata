@@ -1,4 +1,4 @@
-﻿import streamlit as st
+import streamlit as st
 import os
 
 # Configuración de la página
@@ -40,6 +40,16 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
+# --- FUNCIÓN AUXILIAR PARA IMÁGENES ---
+def mostrar_img(archivo, texto, ancho=None):
+    if os.path.exists(archivo):
+        if ancho:
+            st.image(archivo, caption=texto, width=ancho)
+        else:
+            st.image(archivo, caption=texto)
+    else:
+        st.info(f"Archivo no encontrado en GitHub: {archivo}")
+
 # --- ÍNDICE DESPLEGABLE (SIDEBAR) ---
 with st.sidebar:
     st.title("📍 Navegación")
@@ -54,9 +64,15 @@ with st.sidebar:
 st.title('⚽ Apendicity FC')
 st.write('### queremosunagalletadelnata')
 
-# --- SECCIÓN: NUESTRO EQUIPO (ESTILO CARTAS FIFA) ---
+# --- SECCIÓN: NUESTRO EQUIPO ---
 st.header('Nuestro Equipo', anchor='nuestro-equipo')
 
+# AQUÍ ESTÁ TU FOTO DE EQUIPO DESTACADA
+mostrar_img('equipo.jpg', 'Plantel Oficial Apendicity FC')
+
+st.write("---")
+
+# Galería de Jugadoras (Estilo FIFA)
 jugadoras = [
     {"n": "Nina", "num": "11", "p": "Delantera"},
     {"n": "Guti", "num": "7", "p": "Universal"},
@@ -79,7 +95,6 @@ jugadoras = [
     {"n": "Cerpa", "num": "4", "p": "Defensa"}
 ]
 
-# Mostrar jugadoras en cuadrícula de 4
 cols = st.columns(4)
 for i, j in enumerate(jugadoras):
     with cols[i % 4]:
@@ -93,7 +108,7 @@ for i, j in enumerate(jugadoras):
 
 st.divider()
 
-# --- TABLA DE RESULTADOS ---
+# --- RESULTADOS ---
 st.subheader('🏆 Calendario y Resultados')
 res = {
     'Fecha': ['14/05', '07/05', '09/04', '27/03'],
@@ -106,12 +121,6 @@ st.divider()
 
 # --- SECCIÓN: MERCH ---
 st.header('Merch y Suplementos', anchor='merch-y-suplementos')
-
-def mostrar_img(archivo, texto):
-    if os.path.exists(archivo):
-        st.image(archivo, caption=texto)
-    else:
-        st.info(f"Foto pendiente: {archivo}")
 
 c1, c2, c3 = st.columns(3)
 with c1:
@@ -126,33 +135,31 @@ with c3:
 
 st.divider()
 
-# --- SECCIÓN: NEWSLETTER ---
+# --- NEWSLETTER ---
 st.subheader('📩 Noticias de Apendicity FC')
 col_news1, col_news2 = st.columns([2, 1])
 with col_news1:
-    email_usuario = st.text_input('Si quieres recibir noticias de nuestro equipo, déjanos tu contacto:', placeholder='ejemplo@correo.com')
+    email_usuario = st.text_input('Déjanos tu contacto para noticias:', placeholder='ejemplo@correo.com')
 with col_news2:
-    st.write("##") # Espaciador
+    st.write("##")
     if st.button('Suscribirme'):
         if email_usuario:
-            st.toast(f'¡Perfecto! {email_usuario} ha sido registrado.')
+            st.toast(f'¡Registrado! Pronto sabrás de nosotros.')
         else:
-            st.warning('Por favor, ingresa un correo válido.')
+            st.warning('Ingresa un correo.')
 
 st.divider()
 
-# --- SECCIÓN: CONTACTO ---
+# --- CONTACTO ---
 st.header('Contáctanos!!', anchor='contáctanos')
 cont1, cont2, cont3 = st.columns(3)
 
 with cont1:
     st.write("### 📸 Instagram")
     st.link_button("Ir a @apendicity._fc", "https://www.instagram.com/apendicity._fc")
-
 with cont2:
     st.write("### 📧 Email")
     st.write("Apendicity_fc@gmail.com")
-
 with cont3:
     st.write("### 📞 Teléfono")
     st.write("+569 4733 2124")
