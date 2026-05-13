@@ -80,8 +80,9 @@ mostrar_img('equipo.jpg', 'Plantel Oficial Apendicity FC')
 
 # --- CATEGORÍAS ACTUALIZADAS ---
 categorias = {
-    "🧤 ARQUERAS / DEFENSAS": [
-        {"n": "Frías", "num": "19", "p": "Arquero/Defensa"}
+    "🧤 ARQUERAS": [
+        {"n": "Frías", "num": "19", "p": "Arquero/Defensa"},
+        {"n": "Urra", "num": "88", "p": "Universal"} # Movida aquí
     ],
     "🛡️ LÍNEA DEFENSIVA": [
         {"n": "Poblete", "num": "8", "p": "Defensa Central"},
@@ -96,7 +97,7 @@ categorias = {
         {"n": "Anto Lagos", "num": "12", "p": "Defensa/Medio Of."},
         {"n": "Coya", "num": "??", "p": "Medio Ofensivo"},
         {"n": "Maguire", "num": "3", "p": "Defensa/Medio Of."},
-        {"n": "Cami", "num": "??", "p": "Medio Defensivo"} # Movida aquí
+        {"n": "Cami", "num": "??", "p": "Medio Defensivo"}
     ],
     "⚡ ATAQUE Y UNIVERSALES": [
         {"n": "Nina", "num": "11", "p": "Delantera"},
@@ -104,8 +105,7 @@ categorias = {
         {"n": "Guti", "num": "7", "p": "Universal"},
         {"n": "Elisol", "num": "5", "p": "Universal"},
         {"n": "Rafa", "num": "2", "p": "Universal"},
-        {"n": "Pía", "num": "9", "p": "Universal"},
-        {"n": "Urra", "num": "88", "p": "Universal"}
+        {"n": "Pía", "num": "9", "p": "Universal"}
     ]
 }
 
