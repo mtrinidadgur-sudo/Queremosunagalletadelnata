@@ -4,61 +4,71 @@ import os
 # Configuración de la página
 st.set_page_config(page_title='Apendicity FC', layout='wide', page_icon='⚽')
 
-# --- ESTILOS CSS PARA LAS CARTAS ---
+# --- ESTILOS CSS (Dorado y Colores del Logo) ---
 st.markdown("""
     <style>
     .player-card {
-        border: 2px solid #FFD700;
-        border-radius: 15px;
-        padding: 20px;
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        border: 2px solid #D4AF37; /* Dorado metálico */
+        border-radius: 12px;
+        padding: 12px;
         text-align: center;
-        background-color: #1e1e1e;
-        margin-bottom: 20px;
-        min-height: 180px;
-        transition: transform 0.3s;
+        margin-bottom: 15px;
+        min-height: 130px;
+        box-shadow: 0px 4px 10px rgba(212, 175, 55, 0.2);
+        transition: all 0.3s ease;
     }
     .player-card:hover {
-        transform: scale(1.05);
-        border-color: #ffffff;
+        transform: translateY(-8px);
+        box-shadow: 0px 8px 20px rgba(212, 175, 55, 0.4);
+        border-color: #f1d592;
     }
     .number-style {
-        color: #FFD700;
+        background: linear-gradient(to bottom, #f1d592, #D4AF37);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
         margin: 0;
-        font-size: 45px;
-        font-weight: bold;
+        font-size: 32px;
+        font-weight: 900;
+        line-height: 1;
     }
     .name-style {
-        color: white;
+        color: #ffffff;
         margin: 5px 0;
-        font-size: 20px;
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
     .pos-style {
-        color: #cccccc;
-        font-size: 14px;
-        font-style: italic;
+        color: #D4AF37;
+        font-size: 11px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    .section-header {
+        color: #D4AF37;
+        font-family: 'Arial Black', sans-serif;
+        border-left: 5px solid #D4AF37;
+        padding-left: 15px;
+        margin-top: 30px;
+        margin-bottom: 15px;
     }
     </style>
     """, unsafe_allow_html=True)
 
-# --- FUNCIÓN AUXILIAR PARA IMÁGENES ---
-def mostrar_img(archivo, texto, ancho=None):
+def mostrar_img(archivo, texto):
     if os.path.exists(archivo):
-        if ancho:
-            st.image(archivo, caption=texto, width=ancho)
-        else:
-            st.image(archivo, caption=texto)
+        st.image(archivo, caption=texto)
     else:
-        st.info(f"Archivo no encontrado en GitHub: {archivo}")
+        st.info(f"Subiendo archivo: {archivo}")
 
-# --- ÍNDICE DESPLEGABLE (SIDEBAR) ---
+# --- SIDEBAR ---
 with st.sidebar:
-    st.title("📍 Navegación")
-    st.markdown("[⚽ Nuestro Equipo](#nuestro-equipo)")
-    st.markdown("[👕 Merch y Suplementos](#merch-y-suplementos)")
-    st.markdown("[📞 Contáctanos!!](#contáctanos)")
-    st.divider()
-    st.write("Próximo partido: **14 de Mayo**")
-    st.write("⚽ Rival: **Real Parir FC**")
+    st.title("📍 Menú")
+    st.markdown("[⚽ Equipo](#nuestro-equipo)")
+    st.markdown("[👕 Tienda](#merch-y-suplementos)")
+    st.markdown("[📞 Contacto](#contáctanos)")
 
 # --- CABECERA ---
 st.title('⚽ Apendicity FC')
@@ -66,45 +76,52 @@ st.write('### queremosunagalletadelnata')
 
 # --- SECCIÓN: NUESTRO EQUIPO ---
 st.header('Nuestro Equipo', anchor='nuestro-equipo')
-
-# AQUÍ ESTÁ TU FOTO DE EQUIPO DESTACADA
 mostrar_img('equipo.jpg', 'Plantel Oficial Apendicity FC')
 
-st.write("---")
+# --- CATEGORÍAS ---
+categorias = {
+    "🧤 ARQUERAS / DEFENSAS": [
+        {"n": "Frías", "num": "19", "p": "Arquero/Defensa"}
+    ],
+    "🛡️ LÍNEA DEFENSIVA": [
+        {"n": "Poblete", "num": "8", "p": "Defensa Central"},
+        {"n": "Rosenfeld", "num": "18", "p": "Defensa"},
+        {"n": "Cerpa", "num": "4", "p": "Defensa"},
+        {"n": "Inés", "num": "24", "p": "Defensa/Medio"},
+        {"n": "Samacoitz", "num": "6", "p": "Defensa/Medio Def."},
+        {"n": "Cami", "num": "??", "p": "Medio Defensivo"}
+    ],
+    "🎯 MEDIOCAMPO Y CREACIÓN": [
+        {"n": "Acevedo", "num": "22", "p": "Medio Ofensivo"},
+        {"n": "Paredes", "num": "10", "p": "Medio Ofensivo"},
+        {"n": "Anto Lagos", "num": "12", "p": "Defensa/Medio Of."},
+        {"n": "Coya", "num": "??", "p": "Medio Ofensivo"},
+        {"n": "Maguire", "num": "3", "p": "Defensa/Medio Of."}
+    ],
+    "⚡ ATAQUE Y UNIVERSALES": [
+        {"n": "Nina", "num": "11", "p": "Delantera"},
+        {"n": "Agus", "num": "16", "p": "Delantera/Medio"},
+        {"n": "Guti", "num": "7", "p": "Universal"},
+        {"n": "Elisol", "num": "5", "p": "Universal"},
+        {"n": "Rafa", "num": "2", "p": "Universal"},
+        {"n": "Pía", "num": "9", "p": "Universal"},
+        {"n": "Urra", "num": "88", "p": "Universal"}
+    ]
+}
 
-# Galería de Jugadoras (Estilo FIFA)
-jugadoras = [
-    {"n": "Nina", "num": "11", "p": "Delantera"},
-    {"n": "Guti", "num": "7", "p": "Universal"},
-    {"n": "Maguire", "num": "3", "p": "Defensa/Medio Of."},
-    {"n": "Elisol", "num": "5", "p": "Universal"},
-    {"n": "Acevedo", "num": "22", "p": "Medio Ofensivo"},
-    {"n": "Paredes", "num": "10", "p": "Medio Ofensivo"},
-    {"n": "Samacoitz", "num": "6", "p": "Defensa/Medio Def."},
-    {"n": "Frías", "num": "19", "p": "Arquero/Defensa"},
-    {"n": "Rafa", "num": "2", "p": "Universal"},
-    {"n": "Rosenfeld", "num": "18", "p": "Defensa"},
-    {"n": "Anto Lagos", "num": "12", "p": "Defensa/Medio Of."},
-    {"n": "Pía", "num": "9", "p": "Universal"},
-    {"n": "Urra", "num": "88", "p": "Universal"},
-    {"n": "Poblete", "num": "8", "p": "Defensa Central"},
-    {"n": "Inés", "num": "24", "p": "Defensa/Medio"},
-    {"n": "Agus", "num": "16", "p": "Delantera/Medio"},
-    {"n": "Coya", "num": "??", "p": "Medio Ofensivo"},
-    {"n": "Cami", "num": "??", "p": "Medio Defensivo"},
-    {"n": "Cerpa", "num": "4", "p": "Defensa"}
-]
-
-cols = st.columns(4)
-for i, j in enumerate(jugadoras):
-    with cols[i % 4]:
-        st.markdown(f"""
-        <div class="player-card">
-            <div class="number-style">{j['num']}</div>
-            <div class="name-style">{j['n']}</div>
-            <div class="pos-style">{j['p']}</div>
-        </div>
-        """, unsafe_allow_html=True)
+# Mostrar cartas
+for cat, lista in categorias.items():
+    st.markdown(f"<h3 class='section-header'>{cat}</h3>", unsafe_allow_html=True)
+    cols = st.columns(5)
+    for i, j in enumerate(lista):
+        with cols[i % 5]:
+            st.markdown(f"""
+            <div class="player-card">
+                <div class="number-style">{j['num']}</div>
+                <div class="name-style">{j['n']}</div>
+                <div class="pos-style">{j['p']}</div>
+            </div>
+            """, unsafe_allow_html=True)
 
 st.divider()
 
@@ -119,50 +136,45 @@ st.table(res)
 
 st.divider()
 
-# --- SECCIÓN: MERCH ---
+# --- MERCH ---
 st.header('Merch y Suplementos', anchor='merch-y-suplementos')
-
-c1, c2, c3 = st.columns(3)
-with c1:
-    mostrar_img('polera.png', 'Polera Oficial - $25')
-    mostrar_img('proteina.png', 'Proteína Gold - $40')
-with c2:
-    mostrar_img('jockey.png', 'Jockey Club - $15')
-    mostrar_img('botellas.png', 'Botella Hidratación - $10')
-with c3:
-    st.info('🚚 Realizamos envíos a todo Chile.')
-    st.success('💳 Pago seguro con transferencia o Flow.')
+m1, m2, m3 = st.columns(3)
+with m1:
+    mostrar_img('polera.png', 'Polera Oficial')
+    mostrar_img('proteina.png', 'Proteína')
+with m2:
+    mostrar_img('jockey.png', 'Jockey')
+    mostrar_img('botellas.png', 'Botella')
+with m3:
+    st.info('🚚 Envíos a todo Chile.')
+    st.success('✅ Stock disponible.')
 
 st.divider()
 
 # --- NEWSLETTER ---
-st.subheader('📩 Noticias de Apendicity FC')
+st.subheader('📩 Mantente al día')
 col_news1, col_news2 = st.columns([2, 1])
 with col_news1:
-    email_usuario = st.text_input('Déjanos tu contacto para noticias:', placeholder='ejemplo@correo.com')
+    email_usuario = st.text_input('Déjanos tu contacto para noticias:', placeholder='tu@correo.com')
 with col_news2:
     st.write("##")
     if st.button('Suscribirme'):
-        if email_usuario:
-            st.toast(f'¡Registrado! Pronto sabrás de nosotros.')
-        else:
-            st.warning('Ingresa un correo.')
+        if email_usuario: st.toast(f'¡Registrado {email_usuario}!')
+        else: st.warning('Ingresa un correo.')
 
 st.divider()
 
 # --- CONTACTO ---
 st.header('Contáctanos!!', anchor='contáctanos')
-cont1, cont2, cont3 = st.columns(3)
-
-with cont1:
+c1, c2, c3 = st.columns(3)
+with c1:
     st.write("### 📸 Instagram")
-    st.link_button("Ir a @apendicity._fc", "https://www.instagram.com/apendicity._fc")
-with cont2:
+    st.link_button("@apendicity._fc", "https://www.instagram.com/apendicity._fc")
+with c2:
     st.write("### 📧 Email")
     st.write("Apendicity_fc@gmail.com")
-with cont3:
+with c3:
     st.write("### 📞 Teléfono")
     st.write("+569 4733 2124")
 
-st.markdown('---')
-st.caption('© 2026 queremosunagalletadelnata | Apendicity FC Official Website')
+st.caption('© 2026 queremosunagalletadelnata')
